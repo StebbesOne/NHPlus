@@ -71,7 +71,7 @@ public class AccountDAO extends DAOimp<Account> {
         Statement st = conn.createStatement();
         ResultSet set =  st.executeQuery(String.format("Select * from account where username = '%s'", username));
         if (set.next()) {
-            return new Account(set.getString(1), set.getString(2), set.getString(3), set.getInt(4));
+            return getInstanceFromResultSet(set);
         } else {
             return null;
         }
