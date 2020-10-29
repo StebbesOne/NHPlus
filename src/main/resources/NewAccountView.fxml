@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewTreatmentController">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAccountController">
    <children>
       <HBox alignment="TOP_CENTER" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minWidth="400.0" text="Neue Behandlung" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" minWidth="400.0" text="Neuer Benutzer" textAlignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
@@ -30,12 +30,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Vorname:">
+            <Label text="BenutzerName:">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="Nachname:" GridPane.columnIndex="2">
+            <Label text="Passwort:" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
