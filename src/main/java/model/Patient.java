@@ -14,6 +14,7 @@ public class Patient extends Person {
     private LocalDate dateOfBirth;
     private String careLevel;
     private String roomnumber;
+    private boolean locked;
     private List<Treatment> allTreatments = new ArrayList<Treatment>();
 
     /**
@@ -24,11 +25,12 @@ public class Patient extends Person {
      * @param careLevel
      * @param roomnumber
      */
-    public Patient(String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber) {
+    public Patient(String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber, boolean locked) {
         super(firstName, surname);
         this.dateOfBirth = dateOfBirth;
         this.careLevel = careLevel;
         this.roomnumber = roomnumber;
+        this.locked = locked;
     }
 
     /**
@@ -40,12 +42,13 @@ public class Patient extends Person {
      * @param careLevel
      * @param roomnumber
      */
-    public Patient(long pid, String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber) {
+    public Patient(long pid, String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber, boolean locked) {
         super(firstName, surname);
         this.pid = pid;
         this.dateOfBirth = dateOfBirth;
         this.careLevel = careLevel;
         this.roomnumber = roomnumber;
+        this.locked = locked;
     }
 
     /**
@@ -130,5 +133,16 @@ public class Patient extends Person {
                 "\nCarelevel: " + this.careLevel +
                 "\nRoomnumber: " + this.roomnumber +
                 "\n";
+    }
+
+    public String isLocked() {
+        if (locked) {
+            return "TRUE";
+        }
+        return "FALSE";
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 }

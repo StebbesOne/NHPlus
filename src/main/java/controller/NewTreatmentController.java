@@ -56,7 +56,7 @@ public class NewTreatmentController {
         String description = txtDescription.getText();
         String remarks = taRemarks.getText();
         Treatment treatment = new Treatment(patient.getPid(), date,
-                begin, end, description, remarks);
+                begin, end, description, remarks, false);
         createTreatment(treatment);
         controller.readAllAndShowInTableView();
         stage.close();

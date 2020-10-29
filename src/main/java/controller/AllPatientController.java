@@ -11,6 +11,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import model.Patient;
 import utils.DateConverter;
 import datastorage.DAOFactory;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +37,8 @@ public class AllPatientController {
     private TableColumn<Patient, String> colCareLevel;
     @FXML
     private TableColumn<Patient, String> colRoom;
+    @FXML
+    private TableColumn<Patient, String> colLocked;
 
     @FXML
     Button btnDelete;
@@ -77,6 +82,9 @@ public class AllPatientController {
 
         this.colRoom.setCellValueFactory(new PropertyValueFactory<Patient, String>("roomnumber"));
         this.colRoom.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        this.colLocked.setCellValueFactory(new PropertyValueFactory<Patient, String>("locked"));
+        this.colLocked.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Anzeigen der Daten
         this.tableView.setItems(this.tableviewContent);
@@ -191,7 +199,7 @@ public class AllPatientController {
         String carelevel = this.txtCarelevel.getText();
         String room = this.txtRoom.getText();
         try {
-            Patient p = new Patient(firstname, surname, date, carelevel, room);
+            Patient p = new Patient(firstname, surname, date, carelevel, room, false);
             dao.create(p);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -209,5 +217,10 @@ public class AllPatientController {
         this.txtBirthday.clear();
         this.txtCarelevel.clear();
         this.txtRoom.clear();
+    }
+
+    @FXML
+    private void handleUnlock(TableColumn.CellEditEvent<Patient, String> event) {
+        event.getRowValue().setLocked(false);
     }
 }

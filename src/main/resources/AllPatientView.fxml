@@ -23,6 +23,7 @@
             <TableColumn fx:id="colDateOfBirth" maxWidth="7500.0" onEditCommit="#handleOnEditDateOfBirth" prefWidth="75.0" text="Geburtstag" />
             <TableColumn fx:id="colCareLevel" onEditCommit="#handleOnEditCareLevel" prefWidth="75.0" text="Pflegegrad" />
             <TableColumn fx:id="colRoom" onEditCommit="#handleOnEditRoomnumber" prefWidth="75.0" text="Raum" />
+            <TableColumn fx:id="colLocked" onEditCommit="#handleUnlock" prefWidth="75.0" text="Gesperrt" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
