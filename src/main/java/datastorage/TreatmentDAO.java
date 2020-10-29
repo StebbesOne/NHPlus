@@ -1,6 +1,7 @@
 package datastorage;
 
 import model.Treatment;
+import state.State;
 import utils.DateConverter;
 
 import java.sql.Connection;
@@ -43,7 +44,11 @@ public class TreatmentDAO extends DAOimp<Treatment> {
 
     @Override
     protected String getReadAllStatementString() {
-        return "SELECT * FROM treatment";
+        String statement = "SELECT * FROM treatment";
+        if (State.getRole().isAdmin()) {
+            statement += " WHERE locked = FALSE";
+        }
+        return statement;
     }
 
     @Override
@@ -90,5 +95,10 @@ public class TreatmentDAO extends DAOimp<Treatment> {
     public void deleteByPid(int key) throws SQLException {
         Statement st = conn.createStatement();
         st.executeUpdate(String.format("Delete FROM treatment WHERE pid= %d", key));
+    }
+
+    public void lockByPid(int key) throws SQLException{
+        Statement st = conn.createStatement();
+        st.executeUpdate(String.format("Update TREATMENT set LOCKED = TRUE where PID = '%s'", key));
     }
 }

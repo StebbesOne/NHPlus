@@ -28,7 +28,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 1628
+SET FILES CHECK 1702
 SET DATABASE COLLATION SQL_TEXT PAD SPACE
 CREATE USER SA PASSWORD DIGEST '3dd6b9265ff18f31dc30df59304b0ca7'
 ALTER USER SA SET LOCAL TRUE
@@ -54,7 +54,7 @@ INSERT INTO PATIENT VALUES(3,'Martina','Gerdsen','1954-08-12',5,'010',FALSE)
 INSERT INTO PATIENT VALUES(4,'Gertrud','Franzen','1949-04-16',3,'002',FALSE)
 INSERT INTO PATIENT VALUES(5,'Ahmet','Yilmaz','1941-02-22',3,'013',FALSE)
 INSERT INTO PATIENT VALUES(11,'Hans','Neumann','1955-12-12',2,'001',FALSE)
-INSERT INTO PATIENT VALUES(15,'Elisabeth','M\u00fcller','1958-03-07',5,'110',FALSE)
+INSERT INTO PATIENT VALUES(15,'Elisabeth','M\u00fcller','1958-03-07',5,'110',TRUE)
 INSERT INTO TREATMENT VALUES(1,1,'2020-06-03','11:00','15:00','Gespr\u00e4ch','Der Patient hat enorme Angstgef\u00fchle und glaubt, er sei \u00fcberfallen worden. Ihm seien alle Wertsachen gestohlen worden. \u000aPatient beruhigt sich erst, als alle Wertsachen im Zimmer gefunden worden sind. ',NULL)
 INSERT INTO TREATMENT VALUES(2,1,'2020-06-05','11:00','12:30','Gespr\u00e4ch','Patient irrt auf der Suche nach gestohlenen Wertsachen durch die Etage und bezichtigt andere Bewohner des Diebstahls.\u000aPatient wird in seinen Raum zur\u00fcckbegleitet und erh\u00e4lt Beruhigungsmittel.',NULL)
 INSERT INTO TREATMENT VALUES(3,3,'2020-06-04','07:30','08:00','Waschen','Patient mit Waschlappen gewaschen und frisch angezogen. Patient gewendet.',NULL)
@@ -63,6 +63,4 @@ INSERT INTO TREATMENT VALUES(8,1,'2020-06-08','15:00','16:00','Spaziergang','Par
 INSERT INTO TREATMENT VALUES(9,3,'2020-06-07','11:00','11:30','Waschen','Waschen per Dusche auf einem Stuhl; Patientin gewendet;',NULL)
 INSERT INTO TREATMENT VALUES(12,11,'2020-06-08','15:00','15:30','Physiotherapie','\u00dcbungen zur Stabilisation und Mobilisierung der R\u00fcckenmuskulatur',NULL)
 INSERT INTO TREATMENT VALUES(14,5,'2020-08-24','09:30','10:15','KG','Lympfdrainage',NULL)
-INSERT INTO TREATMENT VALUES(16,15,'2020-08-31','13:30','13:45','Toilettengang','Hilfe beim Toilettengang; Patientin klagt \u00fcber Schmerzen beim Stuhlgang. Gabe von Iberogast',NULL)
-INSERT INTO TREATMENT VALUES(17,15,'2020-09-01','16:00','17:00','KG','Massage der Extremit\u00e4ten zur Verbesserung der Durchblutung',NULL)
 INSERT INTO ACCOUNT VALUES('Steffen','nL1v/oNRKtWlHKJ+f8o/RQ==','ADMIN     ',1)

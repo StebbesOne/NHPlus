@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Account;
+import state.State;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -54,6 +55,7 @@ public class LoginController {
             Account a = accountDAO.getAccountByUsername(username);
             if (a != null) {
                 if (a.login(password)) {
+                    State.setRole(a);
                     return true;
                 }
             }

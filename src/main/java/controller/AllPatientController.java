@@ -172,7 +172,7 @@ public class AllPatientController {
         this.tableView.getItems().remove(selectedItem);
         try {
             dao.lockById((int) selectedItem.getPid());
-            tDao.deleteByPid((int) selectedItem.getPid());
+            tDao.lockByPid((int) selectedItem.getPid());
         } catch (SQLException e) {
             e.printStackTrace();
         }

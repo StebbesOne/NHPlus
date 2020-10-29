@@ -1,6 +1,7 @@
 package datastorage;
 
 import model.Patient;
+import state.State;
 import utils.DateConverter;
 
 import java.sql.Connection;
@@ -65,7 +66,11 @@ public class PatientDAO extends DAOimp<Patient> {
      */
     @Override
     protected String getReadAllStatementString() {
-        return "SELECT * FROM patient WHERE LOCKED = FALSE";
+        String statement = "SELECT * FROM patient";
+        if (State.getRole().isAdmin()) {
+            statement += " WHERE locked = FALSE";
+        }
+        return statement;
     }
 
     /**
