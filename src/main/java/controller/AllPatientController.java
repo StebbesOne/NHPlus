@@ -34,8 +34,6 @@ public class AllPatientController {
     private TableColumn<Patient, String> colCareLevel;
     @FXML
     private TableColumn<Patient, String> colRoom;
-    @FXML
-    private TableColumn<Patient, String> colAssets;
 
     @FXML
     Button btnDelete;
@@ -51,8 +49,6 @@ public class AllPatientController {
     TextField txtCarelevel;
     @FXML
     TextField txtRoom;
-    @FXML
-    private TextField txtAssets;
 
     private ObservableList<Patient> tableviewContent = FXCollections.observableArrayList();
     private PatientDAO dao;
@@ -81,9 +77,6 @@ public class AllPatientController {
 
         this.colRoom.setCellValueFactory(new PropertyValueFactory<Patient, String>("roomnumber"));
         this.colRoom.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        this.colAssets.setCellValueFactory(new PropertyValueFactory<Patient, String>("assets"));
-        this.colAssets.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Anzeigen der Daten
         this.tableView.setItems(this.tableviewContent);
@@ -139,15 +132,6 @@ public class AllPatientController {
         doUpdate(event);
     }
 
-    /**
-     * handles new asset value
-     * @param event event including the value that a user entered into the cell
-     */
-    @FXML
-    public void handleOnEditAssets(TableColumn.CellEditEvent<Patient, String> event){
-        event.getRowValue().setAssets(event.getNewValue());
-        doUpdate(event);
-    }
 
     /**
      * updates a patient by calling the update-Method in the {@link PatientDAO}
@@ -206,9 +190,8 @@ public class AllPatientController {
         LocalDate date = DateConverter.convertStringToLocalDate(birthday);
         String carelevel = this.txtCarelevel.getText();
         String room = this.txtRoom.getText();
-        String assets = this.txtAssets.getText();
         try {
-            Patient p = new Patient(firstname, surname, date, carelevel, room, assets);
+            Patient p = new Patient(firstname, surname, date, carelevel, room);
             dao.create(p);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -226,6 +209,5 @@ public class AllPatientController {
         this.txtBirthday.clear();
         this.txtCarelevel.clear();
         this.txtRoom.clear();
-        this.txtAssets.clear();
     }
 }
