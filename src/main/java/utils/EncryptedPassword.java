@@ -3,17 +3,20 @@ package utils;
 public class EncryptedPassword {
 
     private String password;
+
     /**
      * --TODO: Bitte nicht hier hardcoden
      */
     private static final String secret = "PPSSSSSSST GEHEIM!";
 
+    private final EncryptionMethod encryptionMethod = new AES(secret);
+
     public EncryptedPassword(String password) {
         this.password = password;
     }
 
-    public String getDecrypted() {
-        return decrypt();
+    public boolean is(String toCompare) {
+        return decrypt().equals(toCompare);
     }
 
     public String getEncrypted() {
@@ -21,10 +24,6 @@ public class EncryptedPassword {
     }
 
     private String decrypt() {
-        return AES.decrypt(password, secret);
-    }
-
-    public static EncryptedPassword encrypt(String password) {
-        return new EncryptedPassword(AES.encrypt(password, secret));
+        return encryptionMethod.decrypt(password);
     }
 }

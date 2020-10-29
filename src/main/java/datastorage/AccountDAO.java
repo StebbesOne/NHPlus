@@ -1,14 +1,11 @@
 package datastorage;
 
 import model.Account;
-import model.Patient;
-import utils.DateConverter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +20,7 @@ public class AccountDAO extends DAOimp<Account> {
     @Override
     protected String getCreateStatementString(Account account) {
         return String.format("INSERT INTO account (id, username, password, role) VALUES ('%s', '%s', '%s', '%s')",
-                account.getId(), account.getUsername(), account.getEncrypedPassword(), account.getRole());
+                account.getId(), account.getUsername(), account.getEncryptedPassword(), account.getRole());
     }
 
     @Override
@@ -59,7 +56,7 @@ public class AccountDAO extends DAOimp<Account> {
     @Override
     protected String getUpdateStatementString(Account account) {
         return String.format("UPDATE account SET username = '%s', password = '%s', role = '%s', aid = '%s', WHERE aid = %d",
-                account.getUsername(), account.getEncrypedPassword(), account.getRole(), account.getId());
+                account.getUsername(), account.getEncryptedPassword(), account.getRole(), account.getId());
     }
 
     @Override

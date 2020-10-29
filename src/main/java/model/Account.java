@@ -34,11 +34,11 @@ public class Account {
         return role;
     }
 
-    public String getEncrypedPassword() {
+    public String getEncryptedPassword() {
         return password.getEncrypted();
     }
 
     public boolean login(String password) {
-        return this.password.getDecrypted().equals(password);
+        return this.password.is(password);
     }
 }
