@@ -48,21 +48,6 @@ public class NewAccountController {
         this.lblSurname.setText(patient.getSurname());
     }
 
-    @FXML
-    public void handleAdd(){
-        LocalDate date = this.datepicker.getValue();
-        String s_begin = txtBegin.getText();
-        LocalTime begin = DateConverter.convertStringToLocalTime(txtBegin.getText());
-        LocalTime end = DateConverter.convertStringToLocalTime(txtEnd.getText());
-        String description = txtDescription.getText();
-        String remarks = taRemarks.getText();
-        Treatment treatment = new Treatment(patient.getPid(), date,
-                begin, end, description, remarks, false);
-        createTreatment(treatment);
-        controller.readAllAndShowInTableView();
-        stage.close();
-    }
-
     private void createTreatment(Treatment treatment) {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {

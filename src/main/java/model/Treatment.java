@@ -7,35 +7,35 @@ import java.time.LocalTime;
 public class Treatment {
     private long tid;
     private long pid;
+    private long cid;
     private LocalDate date;
     private LocalTime begin;
     private LocalTime end;
     private String description;
     private String remarks;
-    private boolean locked;
 
-    public Treatment(long pid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks, boolean locked) {
+    public Treatment(long pid, long cid, LocalDate date, LocalTime begin,
+                     LocalTime end, String description, String remarks) {
         this.pid = pid;
+        this.cid = cid;
         this.date = date;
         this.begin = begin;
         this.end = end;
         this.description = description;
         this.remarks = remarks;
-        this.locked = locked;
     }
 
-    public Treatment(long tid, long pid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks, boolean locked) {
+    public Treatment(long tid, long pid, long cid, LocalDate date, LocalTime begin,
+                     LocalTime end, String description, String remarks) {
         this.tid = tid;
         this.pid = pid;
+        this.cid = cid;
         this.date = date;
         this.date = date;
         this.begin = begin;
         this.end = end;
         this.description = description;
         this.remarks = remarks;
-        this.locked = locked;
     }
 
     public long getTid() {
@@ -97,5 +97,9 @@ public class Treatment {
                 "\nEnd: " + this.end +
                 "\nDescription: " + this.description +
                 "\nRemarks: " + this.remarks + "\n";
+    }
+
+    public long getCid() {
+        return cid;
     }
 }
