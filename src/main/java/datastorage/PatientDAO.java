@@ -6,6 +6,7 @@ import utils.DateConverter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -64,7 +65,7 @@ public class PatientDAO extends DAOimp<Patient> {
      */
     @Override
     protected String getReadAllStatementString() {
-        return "SELECT * FROM patient";
+        return "SELECT * FROM patient WHERE LOCKED = FALSE";
     }
 
     /**
@@ -106,5 +107,10 @@ public class PatientDAO extends DAOimp<Patient> {
     @Override
     protected String getDeleteStatementString(int key) {
         return String.format("Delete FROM patient WHERE pid=%d", key);
+    }
+
+    public void lockById(int key) throws SQLException{
+        Statement st = conn.createStatement();
+        st.executeUpdate(String.format("Update PATIENT set LOCKED = TRUE where PID = '%s'", key));
     }
 }

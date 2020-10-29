@@ -171,7 +171,7 @@ public class AllPatientController {
         Patient selectedItem = this.tableView.getSelectionModel().getSelectedItem();
         this.tableView.getItems().remove(selectedItem);
         try {
-            dao.deleteById((int) selectedItem.getPid());
+            dao.lockById((int) selectedItem.getPid());
             tDao.deleteByPid((int) selectedItem.getPid());
         } catch (SQLException e) {
             e.printStackTrace();
