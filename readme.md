@@ -50,3 +50,18 @@ Wird das Open JDK verwendet, werden JavaFX-Abhängigkeiten nicht importiert. Die
 - Benutzername: SA
 - Passwort: SA
 - Bitte nicht in die Datenbank schauen, während die Applikation läuft. Das sorgt leider für einen Lock, der erst wieder verschwindet, wenn IntelliJ neugestartet wird!
+
+
+
+__________________________________________________ USER STORYS UND IHRE TESTFÄLLE:
+
+
+User Story 2:
+Als Datenschutzbeauftragter möchte ich, dass das Feld "Vermögensstand" entfernt wird, damit ich dafür garantieren kann, dass die DSGVO eingehalten wird.
+
+A_1: Die Möglichkeit, einen Vermögensstand zu speichern ist nicht mehr vorhanden.
+A_2: Die vorhandenen Daten zum Vermögensstand werden gelöscht.
+A_3: Die Spalte "Vermögensstand" im User Interface ist entfernt.
+
+TF_1: Positiv getestet, die Spalte Vermögensstand ist nicht mehr im User Interface.
+TF_2: Positiv getestet, die Spalte Vermögensstand ist nicht mehr in der Datenbank vorhanden.
