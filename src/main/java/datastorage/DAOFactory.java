@@ -1,8 +1,7 @@
 package datastorage;
 
-/**
- * Makes all DAOs accessible from all classes
- */
+import model.Caregiver;
+
 public class DAOFactory {
 
     private static DAOFactory instance;
@@ -11,10 +10,6 @@ public class DAOFactory {
 
     }
 
-    /**
-     * Singleton object
-     * @return this
-     */
     public static DAOFactory getDAOFactory() {
         if (instance == null) {
             instance = new DAOFactory();
@@ -31,4 +26,6 @@ public class DAOFactory {
     }
 
     public AccountDAO createAccountDAO() { return new AccountDAO(ConnectionBuilder.getConnection()); }
+
+    public CaregiverDAO createCaregiverDAO() { return new CaregiverDAO(ConnectionBuilder.getConnection()); }
 }
