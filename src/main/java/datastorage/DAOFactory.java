@@ -1,5 +1,8 @@
 package datastorage;
 
+/**
+ * Makes all DAOs accessible from all classes
+ */
 public class DAOFactory {
 
     private static DAOFactory instance;
@@ -8,6 +11,10 @@ public class DAOFactory {
 
     }
 
+    /**
+     * Singleton object
+     * @return this
+     */
     public static DAOFactory getDAOFactory() {
         if (instance == null) {
             instance = new DAOFactory();

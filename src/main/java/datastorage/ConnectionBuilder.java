@@ -4,9 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Singleton Class for making a SQL connection
+ */
 public class ConnectionBuilder {
     private static Connection conn;
 
+    /**
+     * Initializes the connection
+     */
     private ConnectionBuilder() {
         try {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
@@ -22,6 +28,11 @@ public class ConnectionBuilder {
         }
     }
 
+    /**
+     * Returns the connection
+     *
+     * @return SQL Connection
+     */
     public static Connection getConnection() {
         if (conn == null) {
             new ConnectionBuilder();
@@ -29,6 +40,9 @@ public class ConnectionBuilder {
         return conn;
     }
 
+    /**
+     * Closes the connection
+     */
     public static void closeConnection() {
         try {
             conn.close();

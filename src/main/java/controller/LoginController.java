@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * The <code>LoginController</code> contains the entire logic of the logic view. It determines which data is displayed and how to react to events.
+ * The <code>LoginController</code> contains the entire logic of the login view. It determines which data is displayed and how to react to events.
  */
 public class LoginController {
     @FXML
@@ -28,6 +28,7 @@ public class LoginController {
 
     /**
      * Sets the primary Stage for this controller
+     *
      * @param stage will always be the primary stage, containing a login view
      */
     public void setPrimaryStage(Stage stage) {
@@ -56,10 +57,11 @@ public class LoginController {
     }
 
     /**
-     * Checks if the login data is correct, using the {@Link }
-     * @param username
-     * @param password
-     * @return
+     * Checks if the login data is correct, using the {@link AccountDAO}
+     *
+     * @param username user name
+     * @param password unencrpted password
+     * @return success
      */
     private boolean login(String username, String password) {
         AccountDAO accountDAO = DAOFactory.getDAOFactory().createAccountDAO();
@@ -78,8 +80,11 @@ public class LoginController {
         return false;
     }
 
+    /**
+     * Handles closing the window if the user doesn't want to log in
+     */
     @FXML
     public void handleCancel() {
-
+        primaryStage.close();
     }
 }

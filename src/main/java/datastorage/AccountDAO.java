@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class AccountDAO extends DAOimp<Account> {
 
     /**
-     * constructs Object. Calls the Constructor from <code>DAOImp</code> to store the connection.
+     * Constructs Object. Calls the Constructor from <code>DAOImp</code> to store the connection.
      *
      * @param conn SQL Connection
      */
@@ -23,7 +23,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * generates a <code>INSERT INTO</code>-Statement for a given account
+     * Generates a <code>INSERT INTO</code>-Statement for a given account
      *
      * @param account for which a specific INSERT INTO is to be created
      * @return <code>String</code> with the generated SQL.
@@ -35,7 +35,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * generates a <code>select</code>-Statement for a given key
+     * Generates a <code>select</code>-Statement for a given key
      *
      * @param key for which a specific SELECTis to be created
      * @return <code>String</code> with the generated SQL.
@@ -46,7 +46,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * maps a <code>ResultSet</code> to an <code>Account</code>
+     * Maps a <code>ResultSet</code> to an <code>Account</code>
      *
      * @param result ResultSet with a single row. Columns will be mapped to a patient-object.
      * @return account with the data from the resultSet.
@@ -60,7 +60,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * generates a <code>SELECT</code>-Statement for all accounts.
+     * Generates a <code>SELECT</code>-Statement for all accounts.
      *
      * @return <code>String</code> with the generated SQL.
      */
@@ -70,7 +70,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * maps a <code>ResultSet</code> to a <code>List</code> of <code>Account</code>
+     * Maps a <code>ResultSet</code> to a <code>List</code> of <code>Account</code>
      *
      * @param result ResultSet with a multiple rows. Data will be mapped to Treatment-object.
      * @return ArrayList with patients from the resultSet.
@@ -89,7 +89,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * generates a <code>UPDATE</code>-Statement for a given account
+     * Generates a <code>UPDATE</code>-Statement for a given account
      *
      * @param account for which a specific update is to be created
      * @return <code>String</code> with the generated SQL.
@@ -101,7 +101,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * generates a <code>delete</code>-Statement for a given key
+     * Generates a <code>delete</code>-Statement for a given key
      *
      * @param key for which a specific DELETE is to be created
      * @return <code>String</code> with the generated SQL.
@@ -112,7 +112,7 @@ public class AccountDAO extends DAOimp<Account> {
     }
 
     /**
-     * gets an <code>Account</code> based on username
+     * Gets an <code>Account</code> based on username
      *
      * @param username name of the user
      * @return account of user

@@ -12,16 +12,36 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
+/**
+ * Main class
+ */
 public class Main extends Application {
 
     private Stage primaryStage;
 
+    /**
+     * Entry point
+     *
+     * @param args application arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
+     * Sets the primary stage
+     *
+     * @param primaryStage primary stage to be set
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         mainWindow();
     }
 
+    /**
+     * Initializes the primary stage and shows the login view
+     */
     public void mainWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/LoginView.fxml"));
@@ -47,9 +67,5 @@ public class Main extends Application {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
