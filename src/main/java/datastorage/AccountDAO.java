@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class AccountDAO extends DAOimp<Account> {
 
     /**
-     * constructs Onbject. Calls the Constructor from <code>DAOImp</code> to store the connection.
+     * constructs Object. Calls the Constructor from <code>DAOImp</code> to store the connection.
      *
      * @param conn SQL Connection
      */

@@ -1,5 +1,6 @@
 package controller;
 
+import datastorage.DAOFactory;
 import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
 import javafx.collections.FXCollections;
@@ -13,13 +14,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Patient;
 import model.Treatment;
-import datastorage.DAOFactory;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The <code>AllTreatmentController</code> contains the entire logic of the patient view. It determines which data is displayed and how to react to events.
+ */
 public class AllTreatmentController {
+    private final ObservableList<Treatment> tableviewContent =
+            FXCollections.observableArrayList();
+    private final ObservableList<String> myComboBoxData =
+            FXCollections.observableArrayList();
     @FXML
     private TableView<Treatment> tableView;
     @FXML
@@ -40,20 +48,17 @@ public class AllTreatmentController {
     private Button btnNewTreatment;
     @FXML
     private Button btnDelete;
-
-    private ObservableList<Treatment> tableviewContent =
-            FXCollections.observableArrayList();
     private TreatmentDAO dao;
-    private ObservableList<String> myComboBoxData =
-            FXCollections.observableArrayList();
     private ArrayList<Patient> patientList;
     private Main main;
 
+    /**
+     * Initializes the corresponding fields. Is called as soon as the corresponding FXML file is to be displayed.
+     */
     public void initialize() {
         readAllAndShowInTableView();
         comboBox.setItems(myComboBoxData);
         comboBox.getSelectionModel().select(0);
-        this.main = main;
 
         this.colID.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("tid"));
         this.colPid.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("pid"));
@@ -65,73 +70,85 @@ public class AllTreatmentController {
         createComboBoxData();
     }
 
+    /**
+     * Reloads the whole table view
+     */
     public void readAllAndShowInTableView() {
         this.tableviewContent.clear();
         this.dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         List<Treatment> allTreatments;
         try {
             allTreatments = dao.readAll();
-            for (Treatment treatment : allTreatments) {
-                this.tableviewContent.add(treatment);
+            this.tableviewContent.addAll(allTreatments);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads all patient models into the combobox which will display the surnames
+     */
+    private void createComboBoxData() {
+        PatientDAO dao = DAOFactory.getDAOFactory().createPatientDAO();
+        try {
+            patientList = (ArrayList<Patient>) dao.readAll();
+            this.myComboBoxData.add("alle");
+            for (Patient patient : patientList) {
+                this.myComboBoxData.add(patient.getSurname());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void createComboBoxData(){
-        PatientDAO dao = DAOFactory.getDAOFactory().createPatientDAO();
-        try {
-            patientList = (ArrayList<Patient>) dao.readAll();
-            this.myComboBoxData.add("alle");
-            for (Patient patient: patientList) {
-                this.myComboBoxData.add(patient.getSurname());
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Handles when an item of the combo box is clicked and filters the table view by the selection
+     */
     @FXML
-    public void handleComboBox(){
+    public void handleComboBox() {
         String p = this.comboBox.getSelectionModel().getSelectedItem();
         this.tableviewContent.clear();
         this.dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         List<Treatment> allTreatments;
-        if(p.equals("alle")){
+        if (p.equals("alle")) {
             try {
-                allTreatments= this.dao.readAll();
-                for (Treatment treatment : allTreatments) {
-                    this.tableviewContent.add(treatment);
-                }
+                allTreatments = this.dao.readAll();
+                this.tableviewContent.addAll(allTreatments);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         Patient patient = searchInList(p);
-        if(patient !=null){
+        if (patient != null) {
             try {
                 allTreatments = dao.readTreatmentsByPid(patient.getPid());
-                for (Treatment treatment : allTreatments) {
-                    this.tableviewContent.add(treatment);
-                }
+                this.tableviewContent.addAll(allTreatments);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private Patient searchInList(String surname){
-        for (int i =0; i<this.patientList.size();i++){
-            if(this.patientList.get(i).getSurname().equals(surname)){
-                return this.patientList.get(i);
+    /**
+     * Searches for patients in the patient list by the surnamew
+     *
+     * @param surname surname of the patient
+     * @return patient (may be null)
+     */
+    private Patient searchInList(String surname) {
+        for (Patient patient : this.patientList) {
+            if (patient.getSurname().equals(surname)) {
+                return patient;
             }
         }
         return null;
     }
 
+    /**
+     * Handles deleting a treatment with {@link TreatmentDAO}
+     */
     @FXML
-    public void handleDelete(){
+    public void handleDelete() {
         int index = this.tableView.getSelectionModel().getSelectedIndex();
         Treatment t = this.tableviewContent.remove(index);
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
@@ -142,14 +159,16 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * Handles opening the new treatment view and gives an alert if no patient is chosen
+     */
     @FXML
     public void handleNewTreatment() {
-        try{
+        try {
             String p = this.comboBox.getSelectionModel().getSelectedItem();
             Patient patient = searchInList(p);
             newTreatmentWindow(patient);
-        }
-        catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information");
             alert.setHeaderText("Patient für die Behandlung fehlt!");
@@ -158,14 +177,22 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * Handles clicking a treatment in the table view
+     */
     @FXML
-    public void handleMouseClick(){
+    public void handleMouseClick() {
         int index = this.tableView.getSelectionModel().getSelectedIndex();
         Treatment treatment = this.tableviewContent.get(index);
         treatmentWindow(treatment);
     }
 
-    public void newTreatmentWindow(Patient patient){
+    /**
+     * Actually opens the new treatment view
+     *
+     * @param patient patient model the treatment will be assigned to
+     */
+    public void newTreatmentWindow(Patient patient) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/NewTreatmentView.fxml"));
             AnchorPane pane = loader.load();
@@ -185,7 +212,12 @@ public class AllTreatmentController {
         }
     }
 
-    public void treatmentWindow(Treatment treatment){
+    /**
+     * Opens the edit treatment view
+     *
+     * @param treatment treatment to be edited by the user
+     */
+    public void treatmentWindow(Treatment treatment) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/TreatmentView.fxml"));
             AnchorPane pane = loader.load();
