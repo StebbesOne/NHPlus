@@ -34,8 +34,8 @@ public class TreatmentDAO extends DAOimp<Treatment> {
      */
     @Override
     protected String getCreateStatementString(Treatment treatment) {
-        return String.format("INSERT INTO treatment (pid, treatment_date, begin, end, description, remarks) VALUES " +
-                        "(%d, '%s', '%s', '%s', '%s', '%s')", treatment.getPid(), treatment.getDate(),
+        return String.format("INSERT INTO treatment (pid, cid, treatment_date, begin, end, description, remarks) VALUES " +
+                        "(%d,'%d', '%s', '%s', '%s', '%s', '%s')", treatment.getPid(), treatment.getCid(), treatment.getDate(),
                 treatment.getBegin(), treatment.getEnd(), treatment.getDescription(),
                 treatment.getRemarks());
     }
