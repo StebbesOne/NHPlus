@@ -48,6 +48,9 @@ public class AllTreatmentController {
     private Button btnNewTreatment;
     @FXML
     private Button btnDelete;
+    @FXML
+    private TableColumn<Treatment, String> colCaregiver;
+
     private TreatmentDAO dao;
     private ArrayList<Patient> patientList;
     private Main main;
@@ -66,6 +69,7 @@ public class AllTreatmentController {
         this.colBegin.setCellValueFactory(new PropertyValueFactory<Treatment, String>("begin"));
         this.colEnd.setCellValueFactory(new PropertyValueFactory<Treatment, String>("end"));
         this.colDescription.setCellValueFactory(new PropertyValueFactory<Treatment, String>("description"));
+        this.colCaregiver.setCellValueFactory(new PropertyValueFactory<Treatment, String>("cid"));
         this.tableView.setItems(this.tableviewContent);
         createComboBoxData();
     }

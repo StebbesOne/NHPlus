@@ -23,6 +23,7 @@
           <TableColumn fx:id="colBegin" maxWidth="-1.0" minWidth="140.0" prefWidth="150.0" text="Beginn" />
             <TableColumn fx:id="colEnd" maxWidth="-1.0" minWidth="140.0" prefWidth="150.0" text="Ende" />
             <TableColumn fx:id="colDescription" maxWidth="-1.0" minWidth="200.0" prefWidth="300.0" text="Kurzbeschreibung" />
+            <TableColumn fx:id="colCaregiver" maxWidth="-1.0" minWidth="200.0" prefWidth="300.0" text="Pfleger/in" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
