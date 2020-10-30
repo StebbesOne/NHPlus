@@ -16,6 +16,7 @@ public class Patient extends Person {
     private String roomnumber;
     private boolean locked;
     private List<Treatment> allTreatments = new ArrayList<Treatment>();
+    private LocalDate lockedDate;
 
     /**
      * constructs a patient from the given params.
@@ -24,6 +25,7 @@ public class Patient extends Person {
      * @param dateOfBirth
      * @param careLevel
      * @param roomnumber
+     * @param locked
      */
     public Patient(String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber, boolean locked) {
         super(firstName, surname);
@@ -31,6 +33,9 @@ public class Patient extends Person {
         this.careLevel = careLevel;
         this.roomnumber = roomnumber;
         this.locked = locked;
+        if (this.locked) {
+            lockedDate = LocalDate.now();
+        }
     }
 
     /**
@@ -42,13 +47,14 @@ public class Patient extends Person {
      * @param careLevel
      * @param roomnumber
      */
-    public Patient(long pid, String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber, boolean locked) {
+    public Patient(long pid, String firstName, String surname, LocalDate dateOfBirth, String careLevel, String roomnumber, boolean locked, LocalDate lockedDate) {
         super(firstName, surname);
         this.pid = pid;
         this.dateOfBirth = dateOfBirth;
         this.careLevel = careLevel;
         this.roomnumber = roomnumber;
         this.locked = locked;
+        this.lockedDate = lockedDate;
     }
 
     /**
@@ -144,5 +150,21 @@ public class Patient extends Person {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public LocalDate getLockedDate() {
+        return lockedDate;
+    }
+
+    /**
+     *
+     * @param lockedDate
+     */
+    public void setLockedDate(LocalDate lockedDate) {
+        this.lockedDate = lockedDate;
     }
 }

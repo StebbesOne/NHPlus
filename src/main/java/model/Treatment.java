@@ -14,6 +14,16 @@ public class Treatment {
     private String description;
     private String remarks;
 
+    /**
+     *
+     * @param pid
+     * @param cid
+     * @param date
+     * @param begin
+     * @param end
+     * @param description
+     * @param remarks
+     */
     public Treatment(long pid, long cid, LocalDate date, LocalTime begin,
                      LocalTime end, String description, String remarks) {
         this.pid = pid;
@@ -25,6 +35,17 @@ public class Treatment {
         this.remarks = remarks;
     }
 
+    /**
+     *
+     * @param tid
+     * @param pid
+     * @param cid
+     * @param date
+     * @param begin
+     * @param end
+     * @param description
+     * @param remarks
+     */
     public Treatment(long tid, long pid, long cid, LocalDate date, LocalTime begin,
                      LocalTime end, String description, String remarks) {
         this.tid = tid;
