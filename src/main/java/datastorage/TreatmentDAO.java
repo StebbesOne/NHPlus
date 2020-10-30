@@ -38,7 +38,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         return String.format("INSERT INTO treatment (pid, cid, treatment_date, begin, end, description, remarks) VALUES " +
                         "(%d,'%d', '%s', '%s', '%s', '%s', '%s')", treatment.getPid(), treatment.getCid(), treatment.getDate(),
                 treatment.getBegin(), treatment.getEnd(), treatment.getDescription(),
-                treatment.getRemarks());
+                treatment.getRemarks(), false);
     }
 
     /**
@@ -148,7 +148,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
      * @return <code>String</code> with the generated SQL.
      */
     private String getReadAllTreatmentsOfOnePatientByPid(long pid) {
-        return String.format("SELECT * FROM treatment LEFT JOIN caregiver ON treatment.CID = caregiver.CID WHERE treatment.pid = %d", pid);
+        return String.format("SELECT * FROM treatment LEFT JOIN caregiver ON treatment.CID = caregiver.CID WHERE treatment.pid = %d and treatment.LOCKED = FALSE", pid);
     }
 
     /**
