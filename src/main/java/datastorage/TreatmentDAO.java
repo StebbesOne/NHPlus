@@ -74,7 +74,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
      */
     @Override
     protected String getReadAllStatementString() {
-        return "SELECT * FROM treatment WHERE locked = FALSE";
+        return "SELECT * FROM treatment LEFT JOIN caregiver ON treatment.CID = caregiver.CID WHERE treatment.locked = FALSE";
     }
 
     /**

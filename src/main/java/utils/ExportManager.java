@@ -49,8 +49,7 @@ public class ExportManager {
         int userSelection = fileChooser.showSaveDialog(frame);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            return fileToSave;
+            return fileChooser.getSelectedFile();
         }
 
         return null;

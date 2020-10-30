@@ -1,21 +1,21 @@
 package controller;
 
+import datastorage.DAOFactory;
 import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Patient;
-import state.State;
 import utils.DateConverter;
-import datastorage.DAOFactory;
 import utils.ExportManager;
 
-import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +26,20 @@ import java.util.List;
  * The <code>AllPatientController</code> contains the entire logic of the patient view. It determines which data is displayed and how to react to events.
  */
 public class AllPatientController {
+    @FXML
+    Button btnDelete;
+    @FXML
+    Button btnAdd;
+    @FXML
+    TextField txtSurname;
+    @FXML
+    TextField txtFirstname;
+    @FXML
+    TextField txtBirthday;
+    @FXML
+    TextField txtCarelevel;
+    @FXML
+    TextField txtRoom;
     @FXML
     private TableView<Patient> tableView;
     @FXML
@@ -42,23 +56,7 @@ public class AllPatientController {
     private TableColumn<Patient, String> colRoom;
     @FXML
     private TableColumn<Patient, String> colLocked;
-
-    @FXML
-    Button btnDelete;
-    @FXML
-    Button btnAdd;
-    @FXML
-    TextField txtSurname;
-    @FXML
-    TextField txtFirstname;
-    @FXML
-    TextField txtBirthday;
-    @FXML
-    TextField txtCarelevel;
-    @FXML
-    TextField txtRoom;
-
-    private ObservableList<Patient> tableviewContent = FXCollections.observableArrayList();
+    private final ObservableList<Patient> tableviewContent = FXCollections.observableArrayList();
     private PatientDAO dao;
 
     /**
@@ -94,58 +92,64 @@ public class AllPatientController {
     }
 
     /**
-     * handles new firstname value
+     * Handles new firstname value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
-    public void handleOnEditFirstname(TableColumn.CellEditEvent<Patient, String> event){
+    public void handleOnEditFirstname(TableColumn.CellEditEvent<Patient, String> event) {
         event.getRowValue().setFirstName(event.getNewValue());
         doUpdate(event);
     }
 
     /**
-     * handles new surname value
+     * Handles new surname value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
-    public void handleOnEditSurname(TableColumn.CellEditEvent<Patient, String> event){
+    public void handleOnEditSurname(TableColumn.CellEditEvent<Patient, String> event) {
         event.getRowValue().setSurname(event.getNewValue());
         doUpdate(event);
     }
 
     /**
-     * handles new birthdate value
+     * Handles new birthdate value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
-    public void handleOnEditDateOfBirth(TableColumn.CellEditEvent<Patient, String> event){
+    public void handleOnEditDateOfBirth(TableColumn.CellEditEvent<Patient, String> event) {
         event.getRowValue().setDateOfBirth(event.getNewValue());
         doUpdate(event);
     }
 
     /**
-     * handles new carelevel value
+     * Handles new carelevel value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
-    public void handleOnEditCareLevel(TableColumn.CellEditEvent<Patient, String> event){
+    public void handleOnEditCareLevel(TableColumn.CellEditEvent<Patient, String> event) {
         event.getRowValue().setCareLevel(event.getNewValue());
         doUpdate(event);
     }
 
     /**
-     * handles new roomnumber value
+     * Handles new roomnumber value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
-    public void handleOnEditRoomnumber(TableColumn.CellEditEvent<Patient, String> event){
+    public void handleOnEditRoomnumber(TableColumn.CellEditEvent<Patient, String> event) {
         event.getRowValue().setRoomnumber(event.getNewValue());
         doUpdate(event);
     }
 
 
     /**
-     * updates a patient by calling the update-Method in the {@link PatientDAO}
+     * Updates a patient by calling the update-Method in the {@link PatientDAO}
+     *
      * @param t row to be updated by the user (includes the patient)
      */
     private void doUpdate(TableColumn.CellEditEvent<Patient, String> t) {
@@ -157,7 +161,7 @@ public class AllPatientController {
     }
 
     /**
-     * calls readAll in {@link PatientDAO} and shows patients in the table
+     * Calls readAll in {@link PatientDAO} and shows patients in the table
      */
     private void readAllAndShowInTableView() {
         this.tableviewContent.clear();
@@ -174,7 +178,7 @@ public class AllPatientController {
     }
 
     /**
-     * handles a delete-click-event. Calls the delete methods in the {@link PatientDAO} and {@link TreatmentDAO}
+     * Handles a delete-click-event. Calls the delete methods in the {@link PatientDAO} and {@link TreatmentDAO}
      */
     @FXML
     public void handleDeleteRow() {
@@ -190,7 +194,7 @@ public class AllPatientController {
     }
 
     /**
-     * handles a add-click-event. Creates a patient and calls the create method in the {@link PatientDAO}
+     * Handles a add-click-event. Creates a patient and calls the create method in the {@link PatientDAO}
      */
     @FXML
     public void handleAdd() {
@@ -211,7 +215,7 @@ public class AllPatientController {
     }
 
     /**
-     * removes content from all textfields
+     * Removes content from all textfields
      */
     private void clearTextfields() {
         this.txtFirstname.clear();
@@ -221,8 +225,11 @@ public class AllPatientController {
         this.txtRoom.clear();
     }
 
+    /**
+     * Handles unlocking data from a patient using the {@link PatientDAO} nad {@link TreatmentDAO}
+     */
     @FXML
-    private void handleUnlock(ActionEvent event) {
+    private void handleUnlock() {
         TreatmentDAO tDao = DAOFactory.getDAOFactory().createTreatmentDAO();
         Patient selectedItem = this.tableView.getSelectionModel().getSelectedItem();
         selectedItem.setLocked(false);
@@ -235,8 +242,11 @@ public class AllPatientController {
         readAllAndShowInTableView();
     }
 
+    /**
+     * Handles exporting all data of the patient
+     */
     @FXML
-    private void handleExport(ActionEvent e) {
+    private void handleExport() {
         Patient p = this.tableView.getSelectionModel().getSelectedItem();
         ArrayList<Object> props = new ArrayList<>();
         props.add(p.getPid());

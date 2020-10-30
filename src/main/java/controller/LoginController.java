@@ -5,7 +5,6 @@ import datastorage.DAOFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -16,6 +15,9 @@ import utils.DeleteManager;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * The <code>LoginController</code> contains the entire logic of the logic view. It determines which data is displayed and how to react to events.
+ */
 public class LoginController {
     @FXML
     private TextField txtUsername;
@@ -24,12 +26,19 @@ public class LoginController {
 
     private Stage primaryStage;
 
+    /**
+     * Sets the primary Stage for this controller
+     * @param stage will always be the primary stage, containing a login view
+     */
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
     }
 
+    /**
+     * Handles opening NHPlus if the login data is correct
+     */
     @FXML
-    public void handleLogin(){
+    public void handleLogin() {
         if (login(txtUsername.getText(), txtPassword.getText())) {
             try {
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("/MainWindowView.fxml"));
@@ -46,6 +55,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * Checks if the login data is correct, using the {@Link }
+     * @param username
+     * @param password
+     * @return
+     */
     private boolean login(String username, String password) {
         AccountDAO accountDAO = DAOFactory.getDAOFactory().createAccountDAO();
         try {
@@ -57,14 +72,14 @@ public class LoginController {
                     return true;
                 }
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     @FXML
-    public void handleCancel(){
+    public void handleCancel() {
 
     }
 }

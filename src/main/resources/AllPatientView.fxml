@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllPatientController">
+<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllPatientController">
    <children>
       <TableView fx:id="tableView" editable="true" layoutX="31.0" layoutY="120.0" prefHeight="287.0" prefWidth="825.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="80.0">
         <columns>
@@ -47,6 +47,17 @@
                   <TextField fx:id="txtBirthday" minWidth="160.0" prefWidth="160.0" promptText="Geburtstag" GridPane.columnIndex="2" />
                   <TextField fx:id="txtCarelevel" prefHeight="26.0" prefWidth="200.0" promptText="Pflegegrad" GridPane.rowIndex="1" />
                   <TextField fx:id="txtRoom" prefHeight="26.0" prefWidth="200.0" promptText="Raum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                   <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAdd" prefWidth="90.0"
+                           text="Hinzufügen" GridPane.columnIndex="3"/>
+                   <HBox alignment="TOP_CENTER" prefWidth="700.0" spacing="10.0" GridPane.rowIndex="1" GridPane.columnIndex="2" minWidth="400.0">
+
+                       <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteRow" prefWidth="90.0"
+                               text="Sperren"/>
+                       <Button fx:id="btnUnlock" mnemonicParsing="false" onAction="#handleUnlock" prefWidth="90.0"
+                               text="Entsperren"/>
+                       <Button fx:id="btnExport" mnemonicParsing="false" onAction="#handleExport" prefWidth="90.0"
+                               text="Export" />
+                   </HBox>
                </children>
                <padding>
                   <Insets right="10.0" />
@@ -54,15 +65,9 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+
             </GridPane>
-            <HBox alignment="TOP_CENTER" prefWidth="190.0" spacing="10.0">
-               <children>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAdd" prefWidth="90.0" text="Hinzufügen" />
-                  <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteRow" prefWidth="90.0" text="Sperren" />
-                  <Button fx:id="btnUnlock" mnemonicParsing="false" onAction="#handleUnlock" prefWidth="90.0" text="Entsperren" />
-                  <Button fx:id="btnExport" mnemonicParsing="false" onAction="#handleExport" prefWidth="90.0" text="Export" />
-               </children>
-            </HBox>
+
          </children>
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
