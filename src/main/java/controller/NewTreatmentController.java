@@ -2,13 +2,14 @@ package controller;
 
 import datastorage.CaregiverDAO;
 import datastorage.DAOFactory;
+import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Caregiver;
 import model.Patient;
 import model.Treatment;
 import utils.DateConverter;
@@ -16,6 +17,7 @@ import utils.DateConverter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * The <code>NewTreatmentController</code> contains the entire logic of the new treatment view. It determines which data is displayed and how to react to events.
@@ -35,6 +37,12 @@ public class NewTreatmentController {
     private TextArea taRemarks;
     @FXML
     private DatePicker datepicker;
+    @FXML
+    private ComboBox<String> caregiverComboBox;
+
+    private final ObservableList<String> myComboBoxData =
+            FXCollections.observableArrayList();
+    private ArrayList<Caregiver> caregiverList;
 
     private AllTreatmentController controller;
     private Patient patient;
@@ -52,6 +60,7 @@ public class NewTreatmentController {
         this.patient = patient;
         this.stage = stage;
         showPatientData();
+        createComboBoxData();
     }
 
     /**
@@ -67,7 +76,6 @@ public class NewTreatmentController {
      */
     @FXML
     public void handleAdd(){
-        Treatment treatment = null;
         CaregiverDAO caregiverDAO = DAOFactory.getDAOFactory().createCaregiverDAO();
         LocalDate date = this.datepicker.getValue();
         String s_begin = txtBegin.getText();
@@ -75,13 +83,9 @@ public class NewTreatmentController {
         LocalTime end = DateConverter.convertStringToLocalTime(txtEnd.getText());
         String description = txtDescription.getText();
         String remarks = taRemarks.getText();
-        try {
-            treatment = new Treatment(patient.getPid(), 1, date,
-                    begin, end, description, remarks, caregiverDAO.read(1));
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
+        Caregiver caregiver = caregiverList.get(caregiverComboBox.getSelectionModel().getSelectedIndex());
+        Treatment treatment = new Treatment(patient.getPid(), caregiver.getCid(), date,
+                    begin, end, description, remarks, caregiver);
         createTreatment(treatment);
         controller.readAllAndShowInTableView();
         stage.close();
@@ -107,5 +111,22 @@ public class NewTreatmentController {
     @FXML
     public void handleCancel() {
         stage.close();
+    }
+
+    /**
+     * Loads all caregiver models into the combobox which will display the surnames
+     */
+    private void createComboBoxData() {
+        CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
+        try {
+            caregiverList = (ArrayList<Caregiver>) dao.readAll();
+            for(Caregiver caregiver: caregiverList) {
+                this.myComboBoxData.add(caregiver.getSurname());
+            }
+            caregiverComboBox.setItems(myComboBoxData);
+            caregiverComboBox.getSelectionModel().select(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

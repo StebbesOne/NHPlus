@@ -148,7 +148,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
      * @return <code>String</code> with the generated SQL.
      */
     private String getReadAllTreatmentsOfOnePatientByPid(long pid) {
-        return String.format("SELECT * FROM treatment WHERE pid = %d", pid);
+        return String.format("SELECT * FROM treatment LEFT JOIN caregiver ON treatment.CID = caregiver.CID WHERE treatment.pid = %d", pid);
     }
 
     /**
