@@ -11,15 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Account;
 import state.State;
+import utils.DeleteManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
-    @FXML
-    private Label lblSurname;
-    @FXML
-    private Label lblFirstname;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -56,6 +53,7 @@ public class LoginController {
             if (a != null) {
                 if (a.login(password)) {
                     State.setRole(a);
+                    DeleteManager.deleteOldData();
                     return true;
                 }
             }

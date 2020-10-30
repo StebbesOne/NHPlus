@@ -1,9 +1,6 @@
 package model;
 
-import utils.DateConverter;
-import utils.EncryptedPassword;
-
-import java.time.LocalDate;
+import encryption.EncryptedPassword;
 
 /**
  * Patients live in a NURSING home and are treated by nurses.

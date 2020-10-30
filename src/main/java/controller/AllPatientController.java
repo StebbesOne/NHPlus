@@ -4,18 +4,21 @@ import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Patient;
+import state.State;
 import utils.DateConverter;
 import datastorage.DAOFactory;
+import utils.ExportManager;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -177,14 +180,13 @@ public class AllPatientController {
     public void handleDeleteRow() {
         TreatmentDAO tDao = DAOFactory.getDAOFactory().createTreatmentDAO();
         Patient selectedItem = this.tableView.getSelectionModel().getSelectedItem();
-        this.tableView.getItems().remove(selectedItem);
         try {
             dao.lockById((int) selectedItem.getPid());
             tDao.lockByPid((int) selectedItem.getPid());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.handleAdd();
+        readAllAndShowInTableView();
     }
 
     /**
@@ -220,7 +222,30 @@ public class AllPatientController {
     }
 
     @FXML
-    private void handleUnlock(TableColumn.CellEditEvent<Patient, String> event) {
-        event.getRowValue().setLocked(false);
+    private void handleUnlock(ActionEvent event) {
+        TreatmentDAO tDao = DAOFactory.getDAOFactory().createTreatmentDAO();
+        Patient selectedItem = this.tableView.getSelectionModel().getSelectedItem();
+        selectedItem.setLocked(false);
+        try {
+            dao.unLockById((int) selectedItem.getPid());
+            tDao.unLockByPid((int) selectedItem.getPid());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        readAllAndShowInTableView();
     }
+
+    @FXML
+    private void handleExport(ActionEvent e) {
+        Patient p = this.tableView.getSelectionModel().getSelectedItem();
+        ArrayList<Object> props = new ArrayList<>();
+        props.add(p.getPid());
+        props.add(p.getFirstName());
+        props.add(p.getSurname());
+        props.add(p.getDateOfBirth());
+        props.add(p.getCareLevel());
+        props.add(p.getRoomnumber());
+        ExportManager.exportToCSV(props);
+    }
+
 }
