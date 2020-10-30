@@ -63,7 +63,20 @@ public class AllCaregiverController {
     }
 
     /**
-     * Calls readAll in {@link CaregiverDAO} and shows patients in the table
+     * Updates a caregiver by calling the update-Method in the {@link CaregiverDAO}
+     *
+     * @param t row to be updated by the user (includes the caregiver)
+     */
+    private void doUpdate(TableColumn.CellEditEvent<Caregiver, String> t) {
+        try {
+            dao.update(t.getRowValue());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Calls readAll in {@link CaregiverDAO} and shows Caregivers in the table
      */
     private void readAllAndShowInTableView() {
         this.tableviewContent.clear();
@@ -74,19 +87,6 @@ public class AllCaregiverController {
             for (Caregiver c : allCaregivers) {
                 this.tableviewContent.add(c);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Updates a patient by calling the update-Method in the {@link CaregiverDAO}
-     *
-     * @param t row to be updated by the user (includes the caregiver)
-     */
-    private void doUpdate(TableColumn.CellEditEvent<Caregiver, String> t) {
-        try {
-            dao.update(t.getRowValue());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,8 +124,6 @@ public class AllCaregiverController {
         event.getRowValue().setPhoneNumber(event.getNewValue());
         doUpdate(event);
     }
-
-
 
     /**
      * Handles a add-click-event. Creates a patient and calls the create method in the {@link CaregiverDAO}
