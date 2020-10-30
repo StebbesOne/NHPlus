@@ -1,5 +1,6 @@
 package datastorage;
 
+import model.Caregiver;
 import model.Treatment;
 import utils.DateConverter;
 
@@ -63,7 +64,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
         LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
         Treatment m = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                date, begin, end, result.getString(7), result.getString(8));
+                date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(9),result.getString(10),result.getString(11),result.getString(12)));
         return m;
     }
 
@@ -93,7 +94,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
             LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
             LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
             t = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                    date, begin, end, result.getString(7), result.getString(8));
+                    date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(9),result.getString(10),result.getString(11),result.getString(12)));
             list.add(t);
         }
         return list;

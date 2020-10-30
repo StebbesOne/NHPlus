@@ -8,6 +8,7 @@ public class Treatment {
     private long tid;
     private long pid;
     private long cid;
+    private Caregiver caregiver;
     private LocalDate date;
     private LocalTime begin;
     private LocalTime end;
@@ -25,7 +26,7 @@ public class Treatment {
      * @param remarks
      */
     public Treatment(long pid, long cid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks) {
+                     LocalTime end, String description, String remarks, Caregiver caregiver) {
         this.pid = pid;
         this.cid = cid;
         this.date = date;
@@ -33,6 +34,7 @@ public class Treatment {
         this.end = end;
         this.description = description;
         this.remarks = remarks;
+        this.caregiver = caregiver;
     }
 
     /**
@@ -47,7 +49,7 @@ public class Treatment {
      * @param remarks
      */
     public Treatment(long tid, long pid, long cid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks) {
+                     LocalTime end, String description, String remarks, Caregiver caregiver) {
         this.tid = tid;
         this.pid = pid;
         this.cid = cid;
@@ -57,6 +59,7 @@ public class Treatment {
         this.end = end;
         this.description = description;
         this.remarks = remarks;
+        this.caregiver = caregiver;
     }
 
     public long getTid() {
@@ -123,4 +126,14 @@ public class Treatment {
     public long getCid() {
         return cid;
     }
+
+
+    public Caregiver getCaregiver() {
+        return caregiver;
+    }
+
+    public void setCaregiver(Caregiver caregiver) {
+        this.caregiver = caregiver;
+    }
+
 }

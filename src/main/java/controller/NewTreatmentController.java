@@ -1,5 +1,6 @@
 package controller;
 
+import datastorage.CaregiverDAO;
 import datastorage.DAOFactory;
 import datastorage.TreatmentDAO;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Patient;
 import model.Treatment;
+import org.hsqldb.HsqlException;
 import utils.DateConverter;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -49,14 +51,21 @@ public class NewTreatmentController {
 
     @FXML
     public void handleAdd(){
+        Treatment treatment = null;
+        CaregiverDAO caregiverDAO = DAOFactory.getDAOFactory().createCaregiverDAO();
         LocalDate date = this.datepicker.getValue();
         String s_begin = txtBegin.getText();
         LocalTime begin = DateConverter.convertStringToLocalTime(txtBegin.getText());
         LocalTime end = DateConverter.convertStringToLocalTime(txtEnd.getText());
         String description = txtDescription.getText();
         String remarks = taRemarks.getText();
-        Treatment treatment = new Treatment(patient.getPid(),1, date,
-                begin, end, description, remarks);
+        try {
+            treatment = new Treatment(patient.getPid(), 1, date,
+                    begin, end, description, remarks, caregiverDAO.read(1));
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         createTreatment(treatment);
         controller.readAllAndShowInTableView();
         stage.close();
