@@ -73,7 +73,7 @@
                            GridPane.rowIndex="4"/>
                 <TextField fx:id="txtDescription" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
                 <DatePicker fx:id="datepicker" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <ComboBox  fx:id="caregiverComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                 <Label fx:id="lblFirstname" text="Vorname" GridPane.columnIndex="1"/>
                 <Label fx:id="lblSurname" text="Nachname" GridPane.columnIndex="3"/>
             </children>
