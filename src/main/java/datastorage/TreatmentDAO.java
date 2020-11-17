@@ -64,7 +64,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
         LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
         Treatment m = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(9),result.getString(10),result.getString(11),result.getString(12)));
+                date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10),result.getString(11),result.getString(12),result.getString(13)));
         return m;
     }
 
@@ -94,7 +94,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
             LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
             LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
             t = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                    date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(9),result.getString(10),result.getString(11),result.getString(12)));
+                    date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10),result.getString(11),result.getString(12),result.getString(13)));
             list.add(t);
         }
         return list;
@@ -109,8 +109,8 @@ public class TreatmentDAO extends DAOimp<Treatment> {
     @Override
     protected String getUpdateStatementString(Treatment treatment) {
         return String.format("UPDATE treatment SET pid = %d, treatment_date ='%s', begin = '%s', end = '%s'," +
-                        "description = '%s', remarks = '%s' WHERE tid = %d", treatment.getPid(), treatment.getDate(),
-                treatment.getBegin(), treatment.getEnd(), treatment.getDescription(), treatment.getRemarks(),
+                        "description = '%s', remarks = '%s', cid = '%s' WHERE tid = %d", treatment.getPid(), treatment.getDate(),
+                treatment.getBegin(), treatment.getEnd(), treatment.getDescription(), treatment.getRemarks(), treatment.getCaregiver().getCid(),
                 treatment.getTid());
     }
 

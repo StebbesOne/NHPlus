@@ -69,7 +69,7 @@ public class AllTreatmentController {
         this.colBegin.setCellValueFactory(new PropertyValueFactory<Treatment, String>("begin"));
         this.colEnd.setCellValueFactory(new PropertyValueFactory<Treatment, String>("end"));
         this.colDescription.setCellValueFactory(new PropertyValueFactory<Treatment, String>("description"));
-        this.colCaregiver.setCellValueFactory(new PropertyValueFactory<Treatment, String>("cid"));
+        this.colCaregiver.setCellValueFactory(new PropertyValueFactory<Treatment, String>("caregiverData"));
         this.tableView.setItems(this.tableviewContent);
         createComboBoxData();
     }

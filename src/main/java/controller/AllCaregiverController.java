@@ -11,9 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Account;
 import model.Caregiver;
+import model.Patient;
 import state.State;
+import utils.ExportManager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllCaregiverController {
@@ -126,6 +129,20 @@ public class AllCaregiverController {
         }
         readAllAndShowInTableView();
         clearFields();
+    }
+
+    /**
+     * Handles exporting all data of the caregiver
+     */
+    @FXML
+    private void handleExport() {
+        Caregiver c = this.tableView.getSelectionModel().getSelectedItem();
+        ArrayList<Object> props = new ArrayList<>();
+        props.add(c.getCid());
+        props.add(c.getFirstName());
+        props.add(c.getSurname());
+        props.add(c.getPhoneNumber());
+        ExportManager.exportToCSV(props);
     }
 
     /**

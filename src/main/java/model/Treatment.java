@@ -14,6 +14,7 @@ public class Treatment {
     private LocalTime end;
     private String description;
     private String remarks;
+    private String caregiverData;
 
     /**
      *
@@ -35,6 +36,7 @@ public class Treatment {
         this.description = description;
         this.remarks = remarks;
         this.caregiver = caregiver;
+        this.caregiverData = initCaregiverData();
     }
 
     /**
@@ -60,6 +62,11 @@ public class Treatment {
         this.description = description;
         this.remarks = remarks;
         this.caregiver = caregiver;
+        this.caregiverData = initCaregiverData();
+    }
+
+    private String initCaregiverData() {
+        return this.caregiver.getFirstName() + " " + this.caregiver.getSurname() +  " " + this.caregiver.getPhoneNumber();
     }
 
     public long getTid() {
@@ -136,4 +143,7 @@ public class Treatment {
         this.caregiver = caregiver;
     }
 
+    public String getCaregiverData() {
+        return caregiverData;
+    }
 }

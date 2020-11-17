@@ -16,7 +16,6 @@ public class Caregiver extends Person {
         this.phoneNumber = phoneNumber;
     }
 
-
     public long getCid() {
         return cid;
     }

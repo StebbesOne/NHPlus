@@ -28,6 +28,7 @@
             <CheckBox fx:id="chkAdmin" prefWidth="160.0"/>
             <Button fx:id="btnAdd" mnemonicParsing="false" prefWidth="100.0" text="Hinzufügen" onAction="#handleAdd"/>
             <Button fx:id="btnDelete" mnemonicParsing="false" prefWidth="100.0" text="Löschen" onAction="#handleDelete"/>
+            <Button fx:id="btnExport" mnemonicParsing="false" prefWidth="100.0" text="Export" onAction="#handleExport"/>
          </children></HBox>
       <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>

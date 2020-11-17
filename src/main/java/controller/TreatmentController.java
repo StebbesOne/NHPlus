@@ -1,17 +1,22 @@
 package controller;
 
+import datastorage.CaregiverDAO;
 import datastorage.DAOFactory;
 import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Caregiver;
 import model.Patient;
 import model.Treatment;
 import utils.DateConverter;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * The <code>TreatmentController</code> contains the entire logic of the edit treatment view. It determines which data is displayed and how to react to events.
@@ -35,6 +40,12 @@ public class TreatmentController {
     private Button btnChange;
     @FXML
     private Button btnCancel;
+    @FXML
+    private ComboBox<String> caregiverComboBox;
+
+    private final ObservableList<String> myComboBoxData =
+            FXCollections.observableArrayList();
+    private ArrayList<Caregiver> caregiverList;
 
     private AllTreatmentController controller;
     private Stage stage;
@@ -56,6 +67,29 @@ public class TreatmentController {
             this.patient = pDao.read((int) treatment.getPid());
             this.treatment = treatment;
             showData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        createComboBoxData();
+    }
+
+    /**
+     * Loads all caregiver models into the combobox which will display the surnames
+     */
+    private void createComboBoxData() {
+        CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
+        try {
+            int key = 0;
+            Caregiver c = dao.read((int) treatment.getCaregiver().getCid());
+            caregiverList = (ArrayList<Caregiver>) dao.readAll();
+            for(Caregiver caregiver: caregiverList) {
+                this.myComboBoxData.add(caregiver.getSurname());
+                if (caregiver.getCid() == c.getCid()) {
+                    key = caregiverList.indexOf(caregiver);
+                }
+            }
+            caregiverComboBox.setItems(myComboBoxData);
+            caregiverComboBox.getSelectionModel().select(key);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,6 +119,7 @@ public class TreatmentController {
         this.treatment.setEnd(txtEnd.getText());
         this.treatment.setDescription(txtDescription.getText());
         this.treatment.setRemarks(taRemarks.getText());
+        this.treatment.setCaregiver(caregiverList.get(caregiverComboBox.getSelectionModel().getSelectedIndex()));
         doUpdate();
         controller.readAllAndShowInTableView();
         stage.close();
