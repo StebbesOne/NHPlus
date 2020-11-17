@@ -14,8 +14,8 @@ public class EncryptedPassword {
      *
      * @param password unencrypted password
      */
-    public EncryptedPassword(String password) {
-        this.password = password;
+    public EncryptedPassword(String password, boolean encrypt) {
+        this.password = encrypt ? encryptionMethod.encrypt(password) : password;
     }
 
     /**

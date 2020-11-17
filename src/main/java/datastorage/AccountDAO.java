@@ -55,7 +55,7 @@ public class AccountDAO extends DAOimp<Account> {
     protected Account getInstanceFromResultSet(ResultSet result) throws SQLException {
         Account a;
         a = new Account(result.getString(1), result.getString(2),
-                result.getString(3), result.getInt(4));
+                result.getString(3), result.getInt(4), false);
         return a;
     }
 
@@ -82,7 +82,7 @@ public class AccountDAO extends DAOimp<Account> {
         Account a;
         while (result.next()) {
             a = new Account(result.getString(1), result.getString(2),
-                    result.getString(3), result.getInt(4));
+                    result.getString(3), result.getInt(4), false);
             list.add(a);
         }
         return list;

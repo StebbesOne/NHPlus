@@ -18,7 +18,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
-        return String.format("INSERT INTO CAREGIVER (firstname, lastname, phonenumber) VALUES ('%s', '%s', '%s')",
+        return String.format("INSERT INTO CAREGIVER (firstname, surname, phonenumber) VALUES ('%s', '%s', '%s')",
                 caregiver.getFirstName(), caregiver.getSurname(), caregiver.getPhoneNumber());
     }
 

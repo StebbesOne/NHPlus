@@ -12,11 +12,11 @@ public class Account {
     private final String role;
     private final EncryptedPassword password;
 
-    public Account(String userName, String password, String role, long id) {
+    public Account(String userName, String password, String role, long id, boolean newInstance) {
         this.id = id;
         this.username = userName;
         this.role = role;
-        this.password = new EncryptedPassword(password);
+        this.password = new EncryptedPassword(password, newInstance);
     }
 
     public long getId() {
