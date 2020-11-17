@@ -125,7 +125,7 @@ public class AllCaregiverController {
     }
 
     /**
-     * Removes content from all textfields
+     * Removes content from all Fields
      */
     private void clearFields() {
         this.txtFirstname.clear();
