@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Account;
 import model.Caregiver;
+import state.State;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -64,6 +65,9 @@ public class AllCaregiverController {
 
         this.colPhone.setCellValueFactory(new PropertyValueFactory<Caregiver, String>("phoneNumber"));
         this.colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        this.btnAdd.setDisable(!State.getRole().isAdmin());
+        this.btnDelete.setDisable(!State.getRole().isAdmin());
 
         //Anzeigen der Daten
         this.tableView.setItems(this.tableviewContent);
