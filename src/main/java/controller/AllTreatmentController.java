@@ -95,7 +95,7 @@ public class AllTreatmentController {
     private void createComboBoxData() {
         PatientDAO dao = DAOFactory.getDAOFactory().createPatientDAO();
         try {
-            patientList = (ArrayList<Patient>) dao.readAll();
+            patientList = dao.readAllUnlocked();
             this.myComboBoxData.add("alle");
             for (Patient patient : patientList) {
                 this.myComboBoxData.add(patient.getSurname());

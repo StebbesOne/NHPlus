@@ -194,4 +194,6 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         Statement st = conn.createStatement();
         st.executeUpdate(String.format("DELETE FROM TREATMENT WHERE LOCKED = TRUE AND PID = '%s'", pid));
     }
+
+
 }

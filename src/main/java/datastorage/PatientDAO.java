@@ -178,4 +178,9 @@ public class PatientDAO extends DAOimp<Patient> {
         return list;
     }
 
+    public ArrayList<Patient> readAllUnlocked() throws SQLException {
+        Statement st = conn.createStatement();
+        ResultSet set = st.executeQuery("SELECT * FROM patient WHERE locked = FALSE");
+        return getListFromResultSet(set);
+    }
 }
