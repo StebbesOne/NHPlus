@@ -24,10 +24,11 @@ public class DeleteManager {
         PatientDAO patientDAO = DAOFactory.getDAOFactory().createPatientDAO();
         TreatmentDAO treatmentDAO = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
-            ArrayList<Integer> pids = patientDAO.deleteAllLocked(LocalDate.now().minusYears(10));
+            ArrayList<Integer> pids = patientDAO.readAllLockedAndOld(LocalDate.now().minusYears(10));
             for (int pid : pids) {
                 treatmentDAO.deleteAllLockedWithPid(pid);
             }
+            patientDAO.deleteAllLocked(LocalDate.now().minusYears(10));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -166,21 +166,24 @@ public class PatientDAO extends DAOimp<Patient> {
      * @return all patient ids that were deleted
      * @throws SQLException
      */
-    public ArrayList<Integer> deleteAllLocked(LocalDate from) throws SQLException {
-        ArrayList<Integer> list = new ArrayList<>();
+    public void deleteAllLocked(LocalDate from) throws SQLException {
         Statement st = conn.createStatement();
-        ResultSet set = st.executeQuery(String.format("SELECT pid FROM patient WHERE locked = TRUE AND lockeddate <= '%s'", from));
-        while (set.next()) {
-            list.add(set.getInt(1));
-        }
-        st = conn.createStatement();
         st.executeUpdate(String.format("DELETE FROM patient WHERE locked = TRUE AND lockeddate <= '%s'", from));
-        return list;
     }
 
     public ArrayList<Patient> readAllUnlocked() throws SQLException {
         Statement st = conn.createStatement();
         ResultSet set = st.executeQuery("SELECT * FROM patient WHERE locked = FALSE");
         return getListFromResultSet(set);
+    }
+
+    public ArrayList<Integer> readAllLockedAndOld(LocalDate from) throws SQLException {
+        ArrayList<Integer> list = new ArrayList<>();
+        Statement st = conn.createStatement();
+        ResultSet set = st.executeQuery(String.format("SELECT pid FROM patient WHERE locked = TRUE AND lockeddate <= '%s'", from));
+        while (set.next()) {
+            list.add(set.getInt(1));
+        }
+        return list;
     }
 }
