@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific patient-SQL-queries.
@@ -176,4 +177,5 @@ public class PatientDAO extends DAOimp<Patient> {
         st.executeUpdate(String.format("DELETE FROM patient WHERE locked = TRUE AND lockeddate <= '%s'", from));
         return list;
     }
+
 }
