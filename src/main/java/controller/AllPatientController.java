@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Patient;
+import state.State;
 import utils.DateConverter;
 import utils.ExportManager;
 
@@ -26,8 +27,11 @@ import java.util.List;
  * The <code>AllPatientController</code> contains the entire logic of the patient view. It determines which data is displayed and how to react to events.
  */
 public class AllPatientController {
+    private final ObservableList<Patient> tableviewContent = FXCollections.observableArrayList();
     @FXML
     Button btnDelete;
+    @FXML
+    Button btnUnlock;
     @FXML
     Button btnAdd;
     @FXML
@@ -56,7 +60,6 @@ public class AllPatientController {
     private TableColumn<Patient, String> colRoom;
     @FXML
     private TableColumn<Patient, String> colLocked;
-    private final ObservableList<Patient> tableviewContent = FXCollections.observableArrayList();
     private PatientDAO dao;
 
     /**
@@ -86,6 +89,9 @@ public class AllPatientController {
 
         this.colLocked.setCellValueFactory(new PropertyValueFactory<Patient, String>("locked"));
         this.colLocked.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        this.btnDelete.setDisable(!State.getRole().isAdmin());
+        this.btnUnlock.setDisable(!State.getRole().isAdmin());
 
         //Anzeigen der Daten
         this.tableView.setItems(this.tableviewContent);

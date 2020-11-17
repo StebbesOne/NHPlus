@@ -20,13 +20,14 @@
       </TableView>
       <HBox layoutX="420.0" layoutY="450.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
-            <TextField fx:id="txtSurname" prefHeight="26.0" prefWidth="220.0" promptText="Nachname" />
-            <TextField fx:id="txtFirstname" prefHeight="26.0" prefWidth="220.0" promptText="Vorname" />
-            <TextField fx:id="txtPhonenumber" prefWidth="160.0" promptText="Telefonnummer" />
-            <PasswordField fx:id="txtPassword" prefWidth="160.0" promptText="Passwort" />
+            <TextField fx:id="txtSurname" prefHeight="26.0" prefWidth="100.0" promptText="Nachname" />
+            <TextField fx:id="txtFirstname" prefHeight="26.0" prefWidth="100.0" promptText="Vorname" />
+            <TextField fx:id="txtPhonenumber" prefWidth="100.0" promptText="Telefonnummer" />
+            <PasswordField fx:id="txtPassword" prefWidth="100.0" promptText="Passwort" />
+             <Label text="Admin:" prefWidth="60.0"/>
             <CheckBox fx:id="chkAdmin" prefWidth="160.0"/>
-            <Button fx:id="btnAdd" mnemonicParsing="false" prefWidth="90.0" text="Hinzufügen" onAction="#handleAdd"/>
-            <Button fx:id="btnDelete" mnemonicParsing="false" prefWidth="90.0" text="Löschen" onAction="#handleDelete"/>
+            <Button fx:id="btnAdd" mnemonicParsing="false" prefWidth="100.0" text="Hinzufügen" onAction="#handleAdd"/>
+            <Button fx:id="btnDelete" mnemonicParsing="false" prefWidth="100.0" text="Löschen" onAction="#handleDelete"/>
          </children></HBox>
       <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
