@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific patient-SQL-queries.
@@ -64,6 +63,7 @@ public class PatientDAO extends DAOimp<Patient> {
 
     /**
      * extracted method for mapping data to patient
+     *
      * @param result SQL resulst set
      * @return initialized patient model
      * @throws SQLException
@@ -171,12 +171,25 @@ public class PatientDAO extends DAOimp<Patient> {
         st.executeUpdate(String.format("DELETE FROM patient WHERE locked = TRUE AND lockeddate <= '%s'", from));
     }
 
+    /**
+     * Reads all unlocked Patients
+     *
+     * @return All patients with no locked mark
+     * @throws SQLException
+     */
     public ArrayList<Patient> readAllUnlocked() throws SQLException {
         Statement st = conn.createStatement();
         ResultSet set = st.executeQuery("SELECT * FROM patient WHERE locked = FALSE");
         return getListFromResultSet(set);
     }
 
+    /**
+     * Reads all patients with locked mark, and locked date older than the parameter
+     *
+     * @param from patient locked since
+     * @return All Ids of the locked patients
+     * @throws SQLException
+     */
     public ArrayList<Integer> readAllLockedAndOld(LocalDate from) throws SQLException {
         ArrayList<Integer> list = new ArrayList<>();
         Statement st = conn.createStatement();

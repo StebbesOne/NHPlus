@@ -1,23 +1,26 @@
 package model;
 
 import utils.DateConverter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Treatments are linked to a patient and a caregiver
+ */
 public class Treatment {
     private long tid;
-    private long pid;
-    private long cid;
+    private final long pid;
+    private final long cid;
     private Caregiver caregiver;
     private LocalDate date;
     private LocalTime begin;
     private LocalTime end;
     private String description;
     private String remarks;
-    private String caregiverData;
+    private final String caregiverData;
 
     /**
-     *
      * @param pid
      * @param cid
      * @param date
@@ -40,7 +43,6 @@ public class Treatment {
     }
 
     /**
-     *
      * @param tid
      * @param pid
      * @param cid
@@ -66,7 +68,7 @@ public class Treatment {
     }
 
     private String initCaregiverData() {
-        return this.caregiver.getFirstName() + " " + this.caregiver.getSurname() +  " " + this.caregiver.getPhoneNumber();
+        return this.caregiver.getFirstName() + " " + this.caregiver.getSurname() + " " + this.caregiver.getPhoneNumber();
     }
 
     public long getTid() {
@@ -81,22 +83,22 @@ public class Treatment {
         return date.toString();
     }
 
-    public String getBegin() {
-        return begin.toString();
-    }
-
-    public String getEnd() {
-        return end.toString();
-    }
-
     public void setDate(String s_date) {
         LocalDate date = DateConverter.convertStringToLocalDate(s_date);
         this.date = date;
     }
 
+    public String getBegin() {
+        return begin.toString();
+    }
+
     public void setBegin(String begin) {
         LocalTime time = DateConverter.convertStringToLocalTime(begin);
         this.begin = time;
+    }
+
+    public String getEnd() {
+        return end.toString();
     }
 
     public void setEnd(String end) {

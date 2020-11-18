@@ -22,6 +22,8 @@ import java.util.ArrayList;
  * The <code>TreatmentController</code> contains the entire logic of the edit treatment view. It determines which data is displayed and how to react to events.
  */
 public class TreatmentController {
+    private final ObservableList<String> myComboBoxData =
+            FXCollections.observableArrayList();
     @FXML
     private Label lblPatientName;
     @FXML
@@ -37,14 +39,7 @@ public class TreatmentController {
     @FXML
     private DatePicker datepicker;
     @FXML
-    private Button btnChange;
-    @FXML
-    private Button btnCancel;
-    @FXML
     private ComboBox<String> caregiverComboBox;
-
-    private final ObservableList<String> myComboBoxData =
-            FXCollections.observableArrayList();
     private ArrayList<Caregiver> caregiverList;
 
     private AllTreatmentController controller;
@@ -82,7 +77,7 @@ public class TreatmentController {
             int key = 0;
             Caregiver c = dao.read((int) treatment.getCaregiver().getCid());
             caregiverList = (ArrayList<Caregiver>) dao.readAll();
-            for(Caregiver caregiver: caregiverList) {
+            for (Caregiver caregiver : caregiverList) {
                 this.myComboBoxData.add(caregiver.getSurname());
                 if (caregiver.getCid() == c.getCid()) {
                     key = caregiverList.indexOf(caregiver);

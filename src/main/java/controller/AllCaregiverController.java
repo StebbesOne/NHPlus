@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Account;
 import model.Caregiver;
-import model.Patient;
 import state.State;
 import utils.ExportManager;
 
@@ -19,6 +18,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The <code>AllCaregiverController</code> contains the entire logic of the caregiver view. It determines which data is displayed and how to react to events.
+ */
 public class AllCaregiverController {
 
     private final ObservableList<Caregiver> tableviewContent = FXCollections.observableArrayList();

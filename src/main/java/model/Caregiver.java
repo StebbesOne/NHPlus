@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Caregiver Objects contain all business information for caregivers of the nursing home
+ */
 public class Caregiver extends Person {
 
     private long cid;
@@ -11,7 +14,7 @@ public class Caregiver extends Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public Caregiver( String firstName, String surName, String phoneNumber) {
+    public Caregiver(String firstName, String surName, String phoneNumber) {
         super(firstName, surName);
         this.phoneNumber = phoneNumber;
     }

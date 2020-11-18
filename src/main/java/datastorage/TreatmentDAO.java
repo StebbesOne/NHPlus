@@ -64,7 +64,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
         LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
         Treatment m = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10),result.getString(11),result.getString(12),result.getString(13)));
+                date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10), result.getString(11), result.getString(12), result.getString(13)));
         return m;
     }
 
@@ -94,7 +94,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
             LocalTime begin = DateConverter.convertStringToLocalTime(result.getString(5));
             LocalTime end = DateConverter.convertStringToLocalTime(result.getString(6));
             t = new Treatment(result.getLong(1), result.getLong(2), result.getLong(3),
-                    date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10),result.getString(11),result.getString(12),result.getString(13)));
+                    date, begin, end, result.getString(7), result.getString(8), new Caregiver(result.getInt(10), result.getString(11), result.getString(12), result.getString(13)));
             list.add(t);
         }
         return list;

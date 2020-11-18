@@ -1,5 +1,8 @@
 package encryption;
 
+/**
+ * Encrypted Password Object that is used by Account.
+ */
 public class EncryptedPassword {
 
     /**

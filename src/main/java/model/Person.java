@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Should be implemented by Objects representing real people
+ */
 public abstract class Person {
     private String firstName;
     private String surname;

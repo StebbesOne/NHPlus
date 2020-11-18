@@ -3,7 +3,7 @@ package state;
 import model.Account;
 
 /**
- * class for global data
+ * Singleton class for global data
  */
 public class State {
 

@@ -8,6 +8,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 
+/**
+ * Implements the Interface <code>EncryptionMethod</code>. Overrides methods to generate specific encryption.
+ */
 public class AES extends EncryptionMethod {
 
     private SecretKeySpec secretKey;

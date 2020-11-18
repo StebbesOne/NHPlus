@@ -50,9 +50,9 @@ public class MainWindowController {
     @FXML
     private void handleShowAllCaregiver(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllCaregiverView.fxml"));
-        try{
+        try {
             mainBorderPane.setCenter(loader.load());
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
         AllCaregiverController controller = loader.getController();

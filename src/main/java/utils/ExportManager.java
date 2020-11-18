@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class for exporting to CSV
+ */
 public class ExportManager {
 
     /**

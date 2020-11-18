@@ -2,7 +2,6 @@ package controller;
 
 import datastorage.CaregiverDAO;
 import datastorage.DAOFactory;
-import datastorage.PatientDAO;
 import datastorage.TreatmentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +22,8 @@ import java.util.ArrayList;
  * The <code>NewTreatmentController</code> contains the entire logic of the new treatment view. It determines which data is displayed and how to react to events.
  */
 public class NewTreatmentController {
+    private final ObservableList<String> myComboBoxData =
+            FXCollections.observableArrayList();
     @FXML
     private Label lblSurname;
     @FXML
@@ -39,9 +40,6 @@ public class NewTreatmentController {
     private DatePicker datepicker;
     @FXML
     private ComboBox<String> caregiverComboBox;
-
-    private final ObservableList<String> myComboBoxData =
-            FXCollections.observableArrayList();
     private ArrayList<Caregiver> caregiverList;
 
     private AllTreatmentController controller;
@@ -75,7 +73,7 @@ public class NewTreatmentController {
      * Handles adding a new treatment
      */
     @FXML
-    public void handleAdd(){
+    public void handleAdd() {
         CaregiverDAO caregiverDAO = DAOFactory.getDAOFactory().createCaregiverDAO();
         LocalDate date = this.datepicker.getValue();
         String s_begin = txtBegin.getText();
@@ -85,7 +83,7 @@ public class NewTreatmentController {
         String remarks = taRemarks.getText();
         Caregiver caregiver = caregiverList.get(caregiverComboBox.getSelectionModel().getSelectedIndex());
         Treatment treatment = new Treatment(patient.getPid(), caregiver.getCid(), date,
-                    begin, end, description, remarks, caregiver);
+                begin, end, description, remarks, caregiver);
         createTreatment(treatment);
         controller.readAllAndShowInTableView();
         stage.close();
@@ -120,7 +118,7 @@ public class NewTreatmentController {
         CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
             caregiverList = (ArrayList<Caregiver>) dao.readAll();
-            for(Caregiver caregiver: caregiverList) {
+            for (Caregiver caregiver : caregiverList) {
                 this.myComboBoxData.add(caregiver.getSurname());
             }
             caregiverComboBox.setItems(myComboBoxData);

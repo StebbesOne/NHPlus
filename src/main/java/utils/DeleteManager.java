@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class for deleting old locked data based in <Code>DSGVO</Code> standards
+ */
 public class DeleteManager {
 
     /**

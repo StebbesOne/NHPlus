@@ -1,7 +1,8 @@
 package datastorage;
 
-import model.Caregiver;
-
+/**
+ * Singleton Object that handles access to <Code>DAO</Code> objects from all classes
+ */
 public class DAOFactory {
 
     private static DAOFactory instance;
@@ -25,7 +26,11 @@ public class DAOFactory {
         return new PatientDAO(ConnectionBuilder.getConnection());
     }
 
-    public AccountDAO createAccountDAO() { return new AccountDAO(ConnectionBuilder.getConnection()); }
+    public AccountDAO createAccountDAO() {
+        return new AccountDAO(ConnectionBuilder.getConnection());
+    }
 
-    public CaregiverDAO createCaregiverDAO() { return new CaregiverDAO(ConnectionBuilder.getConnection()); }
+    public CaregiverDAO createCaregiverDAO() {
+        return new CaregiverDAO(ConnectionBuilder.getConnection());
+    }
 }

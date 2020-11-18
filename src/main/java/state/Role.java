@@ -1,5 +1,8 @@
 package state;
 
+/**
+ * Role object for easier role checking than with string
+ */
 public class Role {
 
     private final String role;

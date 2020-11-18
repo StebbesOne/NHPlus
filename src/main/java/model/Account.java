@@ -3,7 +3,8 @@ package model;
 import encryption.EncryptedPassword;
 
 /**
- * Patients live in a NURSING home and are treated by nurses.
+ * Accounts are used for authentication
+ * One Account gets initialized on Login
  */
 public class Account {
 

@@ -3,6 +3,9 @@ package utils;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Class to Convert Dates to String and vice versa
+ */
 public class DateConverter {
     public static LocalDate convertStringToLocalDate(String date) {
         String[] array = date.split("-");
