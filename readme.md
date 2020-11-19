@@ -1,4 +1,4 @@
-##SZUT Schulprojekt
+## SZUT Schulprojekt
 
 # NHPlus
 
