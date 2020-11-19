@@ -108,12 +108,16 @@ o	Erwartetes Ergebnis:
 	Der Nutzer wird nicht eingeloggt
 
 ## Feld „Vermögensstand“ löschen:
+
 User Story:
+
 Als Datenschutzbeauftragter möchte ich, dass das Feld „Vermögensstand“ entfernet wird, damit ich dafür garantieren kann, dass due DSGVO eingehalten wird
+
 Akzeptanzkriterien:
 -	A_1: Die Möglichkeit, einen Vermögensstand zu speichern ist nicht mehr vorhanden
 -	A_2: Die vorhandenen Daten zum Vermögensstand werden gelöscht
 -	A_3: Die Spalte „Vermögensstand“ in der Tabelle im Frontend ist entfernt
+
 Tasks:
 -	T_1: Das Feld wird aus der SQL Tabelle entfernt
 -	T_2: Das Feld Vermögensstand wird aus dem Frontend entfernt
@@ -124,6 +128,7 @@ o	PatientDAO
 -	T_4: Die Methoden, die den Vermögensstand verwalten werden aus dem PatientController entfernt
 o	onEditHandleAssets (komplett entfernt)
 o	add (assets entfernen)
+
 Testfälle:
 -	TF_1: 
 o	Vorbedingung:
@@ -143,10 +148,13 @@ o	Erwartetes Ergebnis:
 
 ## Löschen von Patientendaten ist erst nach 10 Jahren erlaubt, davor sperren:
 User Story:
+
 Als Leiter der Einrichtung möchte ich, dass die Patientendaten zehn Jahren lang aufbewahrt werden, damit ich die Patientendaten einsehen kann, falls ich für Komplikationen verantwortlich gemacht werde, oder der Patient nach der Behandlung wieder eintritt. Außerdem möchte ich die Daten im Fall eines Einrichtungswechsels des Patienten, an eine andere Einrichtung weitergeben. Zusätzlich habe ich ein Interesse daran, dass sich unsere Praxis an die gesetzlich vorgeschriebene Aufbewahrungspflicht hält.
+
 Akzeptanzkriterien:
 -	A_1: Die Daten werden bei Austritt des Patienten gesperrt
 -	A_2: Die Daten werden bei Überschreitung von 10 Jahren gelöscht
+
 Tasks:
 -	T_1: Im PatientView ist ein Button zum Sperren und Entsperren des zugehörigen Patienten
 o	Wenn gesperrt dann „Behandlung wiederaufnehmen“
@@ -210,13 +218,16 @@ o	Erwartetes Ergebnis:
 	In dem Ergebnis der SQL Query ist das Feld „Gesperrt“ auf „true“ gesetzt
 
 ## Pfleger erfassen:
+
 User Story:
+
 Als Geschäftsführer möchte ich an der Navigationsleiste am linken Rand einen neuen Button bekommen, mit dem ich auf eine Pflegeransicht wechseln kann, die ihre ID, Nach- und Vornamen, sowie ihre Telefonnummer anzeigt. Dazu möchte ich, die Daten der Pfleger an die Behandlung anbinden, damit ich nachvollziehen kann, wer welche Behandlung durchgeführt hat.
 Akzeptanzkriterien:
 -	A_1: Menüpunkt in der Navigationsbar, der die AllCaregiverView aufruft
 -	A_2: Pfleger wird zu den Behandlungen abgespeichert
 -	A_3: In der Treatment/NewTreatmentView wird die Option hinterlegt, über eine Combobox den zuständigen Pfleger zur Behandlung zu speichern
 -	A_4: In der AllTreatmentView werden der Name, Vorname und die Telefonnummer der Pfleger pro Behandlung angezeigt
+
 Tasks:
 -	T_1: Pfleger SQL-Tabelle erstellen
 o	ID
@@ -245,6 +256,7 @@ o	onEditTreatment()
 -	T_11: In der AllTreatmentView Vor- Nachname und Telefonnummer des Pflegers anzeigen
 -	T_12: In der Navigationsleiste den Button einfügen, der auf das AllCaregiverView zeigt
 o	Der WindowController bekommt die Logik, auf das AllCaregiverView zu verweisen
+
 Testfälle:
 -	TF_1:
 o	Vorbedingung:
@@ -285,8 +297,11 @@ o	Erwartetes Ergebnis:
 	Der Nutzer sieht eine ComboBox mit allen Pflegern
 
 ## CSV Export:
+
 User Story:
+
 Als Datenschutzbeauftragter möchte ich die Möglichkeit eines CSV-Exports haben, damit ich den Nutzern die Daten, die über sie gespeichert werden, auf Anfrage zur Verfügung stellen kann.
+
 Akzeptanzkriterien:
 -	A_1: In der Patientenview ist der Button „Datenexport“
 -	A_2: Drückt man auf den Button, öffnet sich ein „Speichern unter Dialog“, in dem der User den Pfad angeben kann
@@ -300,6 +315,7 @@ o	Methoden:
 	exportPatient(id)
 	exportCaregiver(id)
 -	T_3: AllPatientController erweitern um Speicher unter Dialog 
+
 Testfälle:
 -	TF_1:
 o	Vorbedingung:
@@ -321,6 +337,7 @@ o	Erwartetes Ergebnis:
 	Der Nutzer sieht im gewählten Pfad ein CSV Dokument mit den Daten des gewählten Satzes
 
 ## Passwörter als Hash-Werte speichern
+
 User Story:
 
 Als Mitarbeiter, möchte ich die über meine Passwörter verschlüsselt haben, da ich immer und überall dasselbe benutze.
@@ -328,9 +345,11 @@ Als Mitarbeiter, möchte ich die über meine Passwörter verschlüsselt haben, d
 Akzeptanzkriterien:
 
 -	A_1: Das Passwort wird nie in normalen Text gespeichert
+
 Tasks:
 -	T_1: AccountModel bekommt eine createHash(String) -> String Methode
 -	T_2: Beim Abfragen auf das Passwort, wird auch ein Hash vom Input erstellt und mit der Prüfsumme in der Accounts SQL-Tabelle abgeglichen.
+
 Testfälle:
 -	TF_1: 
 o	Vorbedingung:
