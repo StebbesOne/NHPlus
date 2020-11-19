@@ -53,7 +53,7 @@ Wird das Open JDK verwendet, werden JavaFX-Abhängigkeiten nicht importiert. Die
 
 
 
-#User Stories und Testfälle
+# User Stories und Testfälle
 
 ##Benutzeranmeldung
 User Story:
