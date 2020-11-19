@@ -53,10 +53,9 @@ Wird das Open JDK verwendet, werden JavaFX-Abhängigkeiten nicht importiert. Die
 
 
 
-##USER STORYS UND IHRE TESTFÄLLE:
+#User Stories und Testfälle
 
-
-Benutzeranmeldung
+##Benutzeranmeldung
 User Story:
 Als Mitarbeiter möchte ich eine Benutzeranmeldung mit Passwortschutz haben, damit eine Rechteverteilung unter den Nutzern gegeben ist.
 Akzeptanzkriterien:
@@ -107,7 +106,8 @@ o	Auszuführende Testschritte:
 	Der Nutzer gibt ein falsches Passwort und einen falschen Usernamen ein
 o	Erwartetes Ergebnis:
 	Der Nutzer wird nicht eingeloggt
-Feld „Vermögensstand“ löschen:
+
+##Feld „Vermögensstand“ löschen:
 User Story:
 Als Datenschutzbeauftragter möchte ich, dass das Feld „Vermögensstand“ entfernet wird, damit ich dafür garantieren kann, dass due DSGVO eingehalten wird
 Akzeptanzkriterien:
@@ -141,7 +141,7 @@ o	Auszuführende Testschritte:
 o	Erwartetes Ergebnis:
 	Die Query gibt nichts zurück
 
-Löschen von Patientendaten ist erst nach 10 Jahren erlaubt, davor sperren:
+##Löschen von Patientendaten ist erst nach 10 Jahren erlaubt, davor sperren:
 User Story:
 Als Leiter der Einrichtung möchte ich, dass die Patientendaten zehn Jahren lang aufbewahrt werden, damit ich die Patientendaten einsehen kann, falls ich für Komplikationen verantwortlich gemacht werde, oder der Patient nach der Behandlung wieder eintritt. Außerdem möchte ich die Daten im Fall eines Einrichtungswechsels des Patienten, an eine andere Einrichtung weitergeben. Zusätzlich habe ich ein Interesse daran, dass sich unsere Praxis an die gesetzlich vorgeschriebene Aufbewahrungspflicht hält.
 Akzeptanzkriterien:
@@ -209,7 +209,7 @@ o	Erwartetes Ergebnis:
 	In dem Ergebnis der SQL Query ist im Feld „SperrungsTimestamp“ das heutige Datum zu sehen
 	In dem Ergebnis der SQL Query ist das Feld „Gesperrt“ auf „true“ gesetzt
 
-Pfleger erfassen:
+##Pfleger erfassen:
 User Story:
 Als Geschäftsführer möchte ich an der Navigationsleiste am linken Rand einen neuen Button bekommen, mit dem ich auf eine Pflegeransicht wechseln kann, die ihre ID, Nach- und Vornamen, sowie ihre Telefonnummer anzeigt. Dazu möchte ich, die Daten der Pfleger an die Behandlung anbinden, damit ich nachvollziehen kann, wer welche Behandlung durchgeführt hat.
 Akzeptanzkriterien:
@@ -284,7 +284,7 @@ o	Auszuführende Testschritte:
 o	Erwartetes Ergebnis:	
 	Der Nutzer sieht eine ComboBox mit allen Pflegern
 
-CSV Export:
+##CSV Export:
 User Story:
 Als Datenschutzbeauftragter möchte ich die Möglichkeit eines CSV-Exports haben, damit ich den Nutzern die Daten, die über sie gespeichert werden, auf Anfrage zur Verfügung stellen kann.
 Akzeptanzkriterien:
@@ -320,7 +320,7 @@ o	Auszuführende Testschritte:
 o	Erwartetes Ergebnis:	
 	Der Nutzer sieht im gewählten Pfad ein CSV Dokument mit den Daten des gewählten Satzes
 
-Passwörter als Hash-Werte speichern
+##Passwörter als Hash-Werte speichern
 User Story:
 
 Als Mitarbeiter, möchte ich die über meine Passwörter verschlüsselt haben, da ich immer und überall dasselbe benutze.
